@@ -1,21 +1,15 @@
 "use client"
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 
 
 export const Title3DFlip = () => {
-  // The main title text is split into an array of words.
-  // This allows us to animate each word independently.
+
   const titleText = "Level Up Your Skills".split(" ");
   const subtitleText = "From Novice to Pro, One Course at a Time.";
 
-  // --- Animation Variants for Framer Motion ---
-
-  // Parent container variants
-  // This controls the overall animation sequence for the children.
-  // `staggerChildren` creates a delay between each child's animation,
-  // producing the cool domino/staggered effect.
+ 
   const containerVariants = {
     hidden: {},
     visible: {

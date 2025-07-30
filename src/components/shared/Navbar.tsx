@@ -2,8 +2,10 @@
 
 
 // You need to install lucide-react for icons: npm install lucide-react
-import React, { useState } from 'react';
-import { ChevronDown, Search, User, Phone, Menu, X } from 'lucide-react';
+import React, { useContext, useState } from 'react';
+import { ChevronDown, Search, User, Phone, Menu, X, Sun, Moon } from 'lucide-react';
+import { ThemeContext } from '@/lib/ThemeProvider/ThemeProvider';
+import { Button } from '../ui/Button';
 
 // Define the type for a navigation link
 interface NavLink {
@@ -39,7 +41,7 @@ const navLinks: NavLink[] = [
 ];
 
 // Logo Component
-const Logo = () => (
+ export const CompanyLogo = () => (
   <div className="flex items-center space-x-3">
     <svg width="48" height="48" viewBox="0 0 162 162" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M101.722 23.3333L121.5 4.55554L157.444 40.5L137.667 59.2778L101.722 23.3333Z" fill="#6366f1"/>
@@ -103,7 +105,7 @@ const MobileNav: React.FC<{ isOpen: boolean; setIsOpen: (isOpen: boolean) => voi
   return (
     <div className={`fixed top-0 left-0 w-full h-full bg-white z-50 transform ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:hidden`}>
         <div className="flex justify-between items-center p-6 border-b border-gray-100">
-            <Logo />
+            <CompanyLogo />
             <button onClick={() => setIsOpen(false)} className="text-gray-600 hover:text-gray-900 p-2">
                 <X size={24} />
             </button>
@@ -135,19 +137,19 @@ const MobileNav: React.FC<{ isOpen: boolean; setIsOpen: (isOpen: boolean) => voi
 };
 
 
-// Main Navbar Component
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const activeLink = 'Home'; // Example of an active link
+  const activeLink = 'Home';
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   return (
-    <header className="bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 sticky top-0 z-40">
+    <header className="bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-sm border-b border-gray-100 dark:border-gray-800 sticky top-0 z-40">
       <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="#" className="flex items-center">
-              <Logo />
+              <CompanyLogo />
             </a>
           </div>
 
@@ -162,25 +164,35 @@ const Navbar: React.FC = () => {
 
           {/* Right side icons and links for Desktop */}
           <div className="hidden lg:flex items-center space-x-6">
-            <button className="text-gray-600 hover:text-blue-600 p-2 rounded-lg hover:bg-gray-50 transition-all duration-200">
-              <Search size={20} />
-            </button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleTheme}
+              aria-label="Toggle theme"
+              className="rounded-full hover:bg-muted/50"
+            >
+              {theme === "light" ? (
+                <Sun className="h-[1.2rem] w-[1.2rem] transition-all" />
+              ) : (
+                <Moon className="h-[1.2rem] w-[1.2rem] transition-all" />
+              )}
+              <span className="sr-only">Toggle theme</span>
+            </Button>
             
-            <a href="#" className="flex items-center text-gray-700 hover:text-blue-600 border border-gray-200 rounded-full px-4 py-2.5 transition-all duration-300 hover:border-blue-300 hover:shadow-md hover:bg-blue-50">
+            <a href="#" className="flex items-center text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 border border-gray-200 dark:border-gray-700 rounded-full px-4 py-2.5 transition-all duration-300 hover:border-blue-300 hover:shadow-md hover:bg-blue-50 dark:hover:bg-blue-900/20">
               <User size={18} className="mr-2" />
               <div className="text-left">
                 <span className="text-sm font-medium block">Sign in</span>
-                <span className="text-xs text-gray-500">Register</span>
               </div>
             </a>
             
-            <div className="flex items-center space-x-3 pl-4 border-l border-gray-200">
-                <div className="p-2 bg-blue-50 rounded-lg">
-                  <Phone size={18} className="text-blue-600"/>
+            <div className="flex items-center space-x-3 pl-4 border-l border-gray-200 dark:border-gray-700">
+                <div className="p-2 bg-blue-50 dark:bg-blue-900/30 rounded-lg">
+                  <Phone size={18} className="text-blue-600 dark:text-blue-400"/>
                 </div>
                 <div>
-                    <p className="text-xs text-gray-500 uppercase tracking-wide">Support</p>
-                    <p className="font-semibold text-gray-900 text-sm">+1 (123) 456 78900</p>
+                    <p className="text-xs text-gray-500 dark:text-gray-400 uppercase tracking-wide">Support</p>
+                    <p className="font-semibold text-gray-900 dark:text-white text-sm">+1 (123) 456 78900</p>
                 </div>
             </div>
           </div>
@@ -189,7 +201,7 @@ const Navbar: React.FC = () => {
           <div className="lg:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(true)}
-              className="text-gray-600 hover:text-gray-900 p-2 rounded-lg hover:bg-gray-50 transition-colors duration-200"
+              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white p-2 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors duration-200"
               aria-label="Open main menu"
             >
               <Menu size={24} />
