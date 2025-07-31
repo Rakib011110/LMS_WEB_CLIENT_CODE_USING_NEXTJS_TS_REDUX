@@ -1,3 +1,5 @@
+import QuizSelection from "@/components/HomeSection/AtemptQuiz/AtemptQuiz";
+import GiveQuizPage from "@/components/HomeSection/AtemptQuiz/AtemptQuiz";
 import Banner from "@/components/HomeSection/Banner/Banner";
 import { CarouselBanner } from "@/components/HomeSection/Banner/Carouselbanner";
 import CourseList from "@/components/HomeSection/CourseSection/CourseList";
@@ -22,11 +24,10 @@ export default function HomePages() {
 
 <OurExperienceSection />
 <ExperiencedMentorsSlider />
-<StudentsShowcase />
+{/* <StudentsShowcase /> */}
 
-      <CarouselBanner />
-
-      <TEST/>
+      {/* <CarouselBanner /> */}
+      <QuizSelection />
     </div>
     </div>
   );

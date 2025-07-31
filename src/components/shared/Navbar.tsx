@@ -6,6 +6,7 @@ import React, { useContext, useState } from 'react';
 import { ChevronDown, Search, User, Phone, Menu, X, Sun, Moon } from 'lucide-react';
 import { ThemeContext } from '@/lib/ThemeProvider/ThemeProvider';
 import { Button } from '../ui/Button';
+import Link from 'next/link';
 
 // Define the type for a navigation link
 interface NavLink {
@@ -148,9 +149,9 @@ const Navbar: React.FC = () => {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="#" className="flex items-center">
+            <Link href="/" className="flex items-center">
               <CompanyLogo />
-            </a>
+            </Link>
           </div>
 
           {/* Desktop Navigation Links */}

@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 // You can replace these with your actual image paths
 const bannerImages = [
-  "https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1511884642898-4c92249e20b6?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1470770841072-f978cf4d019e?q=80&w=2070&auto=format&fit=crop",
-  "https://images.unsplash.com/photo-1433086966358-54859d0ed716?q=80&w=1974&auto=format&fit=crop",
+  "",
+  "",
+  "",
+  "",
 ];
 
 /**

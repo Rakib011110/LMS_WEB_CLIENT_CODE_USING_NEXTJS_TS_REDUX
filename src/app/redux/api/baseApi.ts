@@ -8,6 +8,7 @@ const baseApi = createApi({
   }),     
   tagTypes: [
     "User",
+    "Quiz"
    
   ],
   endpoints: () => ({})
